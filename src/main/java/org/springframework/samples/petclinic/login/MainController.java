@@ -28,12 +28,12 @@ public class MainController{
        return "welcomePage";
    }
  
-   @RequestMapping(value = "auth/admin", method = RequestMethod.GET)
+   @RequestMapping(value = "/admin", method = RequestMethod.GET)
    public String adminPage(Model model) {
        return "adminPage";
    }
  
-   @RequestMapping(value = "auth/login", method = RequestMethod.GET)
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
    public String loginPage(Model model ) {
       
        return "loginPage";
@@ -45,7 +45,7 @@ public class MainController{
        return "logoutSuccessfulPage";
    }
  
-   @RequestMapping(value = "/auth/userInfo", method = RequestMethod.GET)
+   @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
    public String userInfo(Model model, Principal principal) {
  
        // After user login successfully.

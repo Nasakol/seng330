@@ -18,10 +18,12 @@ package org.springframework.samples.petclinic.repository;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.Customer;
 
-public interface CustomerRepository {
+public interface CustomerRepository extends Repository<Customer, Integer>{
 
   
     Customer findByEmail(String email) throws DataAccessException;
