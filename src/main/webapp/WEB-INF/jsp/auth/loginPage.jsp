@@ -1,9 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
-<html>
-<head><title>Login</title></head>
-<body>
-   <jsp:include page="_menu.jsp" />
+<petclinic:layout pageName="login">
     
     
    <h1>Login</h1>
@@ -35,5 +32,4 @@
          </tr>
       </table>
   </form>
-</body>
-</html>
+</petclinic:layout>

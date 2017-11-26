@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.repository;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
 
-/**
- * Models a {@link Employee Vet's} specialty (for example, dentistry).
- *
- * @author Juergen Hoeller
- */
-@Entity
-@Table(name = "specialties")
-public class Specialty extends NamedEntity {
+import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.model.EmployeeShift;
+import org.springframework.samples.petclinic.model.Event;
 
+public interface EmployeeShiftRepository {
+
+    
+    void save(EmployeeShift employeeShift) throws DataAccessException;
+
+    List<EmployeeShift> findByEmployeeId(int employeeId);
 }

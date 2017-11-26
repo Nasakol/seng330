@@ -24,46 +24,64 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
-import org.springframework.core.style.ToStringCreator;
-
 
 @Entity
 @Table(name = "employee")
 public class Employee extends Person {
-   
-	
-	@Column(name = "position")
+
+
+	@Column(name = "role")
     @NotEmpty
-    private String position;
+    private String role;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    private Set<EmployeeShift> schedules;
+	
+	
+	
+	
 	public String getPosition() {
-		return position;
+		return role;
 	}
 
 	public void setPosition(String position) {
-		this.position = position;
+		this.role = position;
 	}
 	
-	@Override
-    public String toString() {
-        return new ToStringCreator(this)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.EAGER)
+    private Set<EmployeeShift> employeeShifts;
 
-            .append("id", this.getId())
-            .append("new", this.isNew())
-            .append("lastName", this.getLastName())
-            .append("firstName", this.getFirstName())
-            .append("address", this.address)
-            .append("city", this.city)
-            .append("telephone", this.telephone)
-            .toString();
+	protected void setEmployeeShiftsInternal(Set<EmployeeShift> employeeShifts) {
+        this.employeeShifts = employeeShifts;
+    }
+
+    protected Set<EmployeeShift> getEmployeeShiftsInternal() {
+        if (this.employeeShifts == null) {
+            this.employeeShifts = new HashSet<EmployeeShift>();
+        }
+        return this.employeeShifts;
+    }
+
+    public List<EmployeeShift> getEmployeeShifts() {
+        List<EmployeeShift> sortedEmployeeShifts = new ArrayList<EmployeeShift>(getEmployeeShiftsInternal());
+        PropertyComparator.sort(sortedEmployeeShifts, new MutableSortDefinition("date", false, false));
+        return Collections.unmodifiableList(sortedEmployeeShifts);
+    }
+
+    public void addEmployeeShift(EmployeeShift employeeShift) {
+        getEmployeeShiftsInternal().add(employeeShift);
+        employeeShift.setEmployee(this);
     }
 
 }

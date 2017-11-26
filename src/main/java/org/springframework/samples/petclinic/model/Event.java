@@ -1,92 +1,128 @@
+/*
+ * Copyright 2002-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.springframework.samples.petclinic.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.support.MutableSortDefinition;
+import org.springframework.beans.support.PropertyComparator;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class Event {
-	private int id;
-	private String user;
-	private String eventName;
-	private Date targetDate;
-	private boolean isDone;
-	
-	
+@Entity
+@Table(name = "events")
+public class Event extends NamedEntity {
 
-	public Event(int id, String user, String desc, Date targetDate, boolean isDone) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.eventName = desc;
-		this.targetDate = targetDate;
-		this.isDone = isDone;
-	}
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private Date date;
+    
+    @Column(name = "location")
+    private String location;
+    
+    @Column(name = "type")
+    private String type;
+    
+    @Column(name = "isComplete")
+    private boolean isComplete;
 
-	public int getId() {
-		return id;
-	}
+    @NotEmpty
+    @Column(name = "description")
+    private String description;
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
-	public String getUser() {
-		return user;
-	}
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event", fetch = FetchType.EAGER)
+//    private Set<Visit> food;
 
-	public String getDesc() {
-		return eventName;
-	}
 
-	public void setDesc(String desc) {
-		this.eventName = desc;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public Date getTargetDate() {
-		return targetDate;
-	}
+    public Date getDate() {
+        return this.date;
+    }
 
-	public void setTargetDate(Date targetDate) {
-		this.targetDate = targetDate;
-	}
+    public String getType() {
+        return this.type;
+    }
 
-	public boolean isDone() {
-		return isDone;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setDone(boolean isDone) {
-		this.isDone = isDone;
-	}
+    public Customer getCustomer() {
+        return this.customer;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
+    protected void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    
+    public String getDescription() {
+        return this.description;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Event other = (Event) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@Override
-	public String toString() {
-		return String.format(
-				"events [id=%s, user=%s, event name=%s, targetDate=%s, isDone=%s]", id,
-				user, eventName, targetDate, isDone);
-	}
+//    protected Set<Food> getFoodInternal() {
+//        if (this.foods == null) {
+//            this.foods = new HashSet<>();
+//        }
+//        return this.foods;
+//    }
+//
+//    protected void setVisitsInternal(Set<Foods> foods) {
+//        this.foods = foods;
+//    }
+//
+//    public List<Visit> getFoods() {
+//        List<Visit> Foods = new ArrayList<>(getFoodsInternal());
+//        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
+//        return Collections.unmodifiableList(sortedFoods);
+//    }
+//
+//    public void addFood(Food food) {
+//        getFoodsInternal().add(food);
+//        event.setEvent(this);
+//    }
 
 }
