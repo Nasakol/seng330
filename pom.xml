@@ -190,6 +190,18 @@
         </dependency>
 
 
+		<!-- spring security -->
+					<dependency>
+						<groupId>org.springframework.security</groupId>
+						<artifactId>spring-security-web</artifactId>
+						<version>4.0.1.RELEASE</version>
+ 					</dependency>
+  					<dependency>
+            				<groupId>org.springframework.security</groupId>
+            				<artifactId>spring-security-config</artifactId>
+            				<version>4.0.1.RELEASE</version>
+        				</dependency>
+        				
         <!-- Webjars -->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -392,17 +404,7 @@
                         <artifactId>bootstrap</artifactId>
                         <version>${webjars-bootstrap.version}</version>
                     </dependency>
-                     <!-- spring security -->
-					<dependency>
-						<groupId>org.springframework.security</groupId>
-						<artifactId>spring-security-web</artifactId>
-						<version>4.0.1.RELEASE</version>
- 					</dependency>
-  					<dependency>
-            				<groupId>org.springframework.security</groupId>
-            				<artifactId>spring-security-config</artifactId>
-            				<version>4.0.1.RELEASE</version>
-        				</dependency>
+               
                 </dependencies>
             </plugin>
         </plugins>
