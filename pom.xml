@@ -392,6 +392,17 @@
                         <artifactId>bootstrap</artifactId>
                         <version>${webjars-bootstrap.version}</version>
                     </dependency>
+                     <!-- spring security -->
+					<dependency>
+						<groupId>org.springframework.security</groupId>
+						<artifactId>spring-security-web</artifactId>
+						<version>4.0.1.RELEASE</version>
+ 					</dependency>
+  					<dependency>
+            				<groupId>org.springframework.security</groupId>
+            				<artifactId>spring-security-config</artifactId>
+            				<version>4.0.1.RELEASE</version>
+        				</dependency>
                 </dependencies>
             </plugin>
         </plugins>
@@ -431,44 +442,6 @@
                 <dependency>
                     <groupId>org.hsqldb</groupId>
                     <artifactId>hsqldb</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>MySQL</id>
-            <properties>
-                <db.script>mysql</db.script>
-                <jpa.database>MYSQL</jpa.database>
-                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:mysql://localhost:3306/petclinic?useUnicode=true</jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password>petclinic</jdbc.password>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>${mysql-driver.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>PostgreSQL</id>
-            <properties>
-                <db.script>postgresql</db.script>
-                <jpa.database>POSTGRESQL</jpa.database>
-                <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:postgresql://localhost:5432/petclinic</jdbc.url>
-                <jdbc.username>postgres</jdbc.username>
-                <jdbc.password>petclinic</jdbc.password>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>${postgresql-driver.version}</version>
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
