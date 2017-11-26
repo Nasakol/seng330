@@ -59,6 +59,13 @@ public class CompanyServiceImpl implements CompanyService {
 	public Customer findCustomerById(int id) throws DataAccessException {
 		 return customerRepository.findById(id);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<Customer> findCustomerByLastName(String lastName) {
+		return customerRepository.findByLastName(lastName);
+	}
+
 
 	@Override
     @Transactional(readOnly = true)
@@ -145,7 +152,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
     @Transactional(readOnly = true)
-	public void save(Contact contact) {
+	public void saveContact(Contact contact) {
 		contactRepository.save(contact);
 		
 	}
@@ -162,14 +169,20 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<EmployeeShift> findEmployeeShiftByEmployeeId(int employeeId) throws DataAccessException {
 		return employeeShiftRepository.findByEmployeeId(employeeId);
 	}
-
-
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<Employee> findEmployeeByLastName(String lastName) throws DataAccessException {
+		return employeeRepository.findByLastName(lastName);
+	}
 
 
 	@Override
 	public Employee findEmployeeByEmail(String email) throws DataAccessException {
 		return employeeRepository.findByEmail(email);
 	}
+
+
 
 
 }

@@ -73,4 +73,12 @@ public class JpaEmployeeRepositoryImpl implements EmployeeRepository {
         return (Employee) query.getSingleResult();
 	}
 
+	@Override
+    @SuppressWarnings("unchecked")
+    public Collection<Employee> findByLastName(String name) {
+        Query query = this.em.createQuery("SELECT employee FROM Employee e left join fetch employee.employeeShifts WHERE employee.name =:name");
+        query.setParameter("name", name);
+        return query.getResultList();
+    }
+
 }

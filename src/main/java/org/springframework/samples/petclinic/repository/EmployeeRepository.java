@@ -31,5 +31,6 @@ public interface EmployeeRepository extends Repository<Employee, Integer>{
 	Employee findByEmail(String email) throws DataAccessException;
 	Collection<Employee> findByRole(String role) throws DataAccessException;
 	void save(Employee employee) throws DataAccessException;
+	Collection<Employee> findByLastName(String lastName);
 
 }

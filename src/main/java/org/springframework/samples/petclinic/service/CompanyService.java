@@ -38,6 +38,7 @@ public interface CompanyService {
 	Employee findEmployeeByEmail(String email) throws DataAccessException;
 	Collection<Employee> findEmployeeByRole(String role) throws DataAccessException;
 	void saveEmployee(Employee employee) throws DataAccessException;
+	Collection<Employee> findEmployeeByLastName(String lastName);
 	
 	void saveEmployeeShift(EmployeeShift employeeShift) throws DataAccessException;
     List<EmployeeShift> findEmployeeShiftByEmployeeId(int employeeId) throws DataAccessException;
@@ -51,7 +52,9 @@ public interface CompanyService {
 	 Contact findContactById(int contactId) throws DataAccessException;
 	 Collection<Contact> findContactByType(String type) throws DataAccessException;
 	 Collection<Contact> findContactByName(String name) throws DataAccessException;
-	 void save(Contact contact);
+	 void saveContact(Contact contact);
+	Collection<Customer> findCustomerByLastName(String lastName);
+	
 	
 
 
