@@ -6,5 +6,5 @@
 <petclinic:layout pageName="home">
     <h2><fmt:message key="welcome"/></h2>
     <h3>Welcome to our website</h3>
-</petclinic:layout> --%>
+</petclinic:layout>
 

@@ -1,9 +1,11 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+
+<petclinic:layout pageName="myEvents">
  
-<petclinic:layout pageName="login">
-    
-    
-   <h1>Login</h1>
+    <h1>Login</h1>
      
      <!-- /login?error=true -->
      <c:if test="${param.error == 'true'}">

@@ -1,18 +1,12 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page session="true"%>
- 
-<html>
-<head>
-<title>${title}</title>
-</head>
-<body>
-    <jsp:include page="_menu.jsp" />
+<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+
+<petclinic:layout pageName="admin">
  
     <h2>Admin Page</h2>
- 
- 
     <h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
  
     <b>This is protected page!</b>  
-</body>
-</html>
+</petclinic:layout>petclinic:layout>

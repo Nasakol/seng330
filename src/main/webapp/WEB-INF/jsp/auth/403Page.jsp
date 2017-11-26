@@ -1,11 +1,9 @@
-<%@page session="false"%>
-<html>
-<head>
-<title>Access Denied</title>
-</head>
-<body>
-<jsp:include page="_menu.jsp"/>
- 
+
+<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+
+<petclinic:layout pageName="error">
     <h3 style="color:red;">${message}</h3>
-</body>
-</html>
+</petclinic:layout>

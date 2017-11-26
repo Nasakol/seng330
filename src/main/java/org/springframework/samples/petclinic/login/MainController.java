@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
  
 @Controller
-@RequestMapping("/welcome")
+@RequestMapping("/")
 public class MainController{
 	
 //  private final CompanyService companyService;
@@ -21,28 +21,28 @@ public class MainController{
 //      this.companyService = companyService;
 //  }
 // 
-   @RequestMapping(value = { "/", "/welcome","/welcome" }, method = RequestMethod.GET)
+   @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
    public String welcomePage(Model model) {
        model.addAttribute("title", "Welcome");
        model.addAttribute("message", "This is welcome page!");
-       return "welcomePage";
+       return "auth/welcomePage";
    }
  
    @RequestMapping(value = "/admin", method = RequestMethod.GET)
    public String adminPage(Model model) {
-       return "adminPage";
+       return "auth/adminPage";
    }
  
    @RequestMapping(value = "/login", method = RequestMethod.GET)
    public String loginPage(Model model ) {
       
-       return "loginPage";
+       return "auth/loginPage";
    }
  
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(Model model) {
        model.addAttribute("title", "Logout");
-       return "logoutSuccessfulPage";
+       return "auth/logoutSuccessfulPage";
    }
  
    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
@@ -53,7 +53,7 @@ public class MainController{
  
        System.out.println("User Name: "+ userName);
  
-       return "userInfoPage";
+       return "auth/userInfoPage";
    }
  
    @RequestMapping(value = "/403", method = RequestMethod.GET)
@@ -66,6 +66,6 @@ public class MainController{
            model.addAttribute("msg",
                    "You do not have permission to access this page!");
        }
-       return "403Page";
+       return "auth/403Page";
    }
 }

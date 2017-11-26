@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ attribute name="name" required="true" rtexprvalue="true"
-              description="Name of the active menu: home, owners, vets or error" %>
+              description="Name of the active menu: home, myEvents, login or admin" %>
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -23,18 +23,18 @@
                     <span>Home</span>
                 </petclinic:menuItem>
 
-                <petclinic:menuItem active="${name eq 'owners'}" url="/userInfo" title="my events">
+                <petclinic:menuItem active="${name eq 'myEvents'}" url="/userInfo" title="my events">
                     <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                     <span>My Events</span>
                 </petclinic:menuItem>
 
-                <petclinic:menuItem active="${name eq 'vets'}" url="/login" title="login">
+                <petclinic:menuItem active="${name eq 'login'}" url="/login" title="login">
                     
                     <span>Login</span>
                 </petclinic:menuItem>
 
-                <petclinic:menuItem active="${name eq 'error'}" url="/oups.html"
+                <petclinic:menuItem active="${name eq 'admin'}" url="/admin"
                             title="trigger a RuntimeException to see how it is handled">
                     <!-- <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> -->
                     <span>Admin</span>
