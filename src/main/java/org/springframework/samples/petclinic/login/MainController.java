@@ -49,14 +49,14 @@ public class MainController{
    public String userInfo(Model model, Principal principal) {
  
        // After user login successfully.
-       String userName = principal.getName();
+//       String userName = principal.getName();
  
-       System.out.println("User Name: "+ userName);
- 
+//       System.out.println("User Name: "+ userName);
+// 
        return "auth/userInfoPage";
    }
  
-   @RequestMapping(value = "/403", method = RequestMethod.GET)
+   @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
    public String accessDenied(Model model, Principal principal) {
         
        if (principal != null) {
