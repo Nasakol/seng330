@@ -23,6 +23,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.Customer;
 import org.springframework.samples.petclinic.model.Event;
+import org.springframework.samples.petclinic.model.Food;
+import org.springframework.samples.petclinic.model.Inventory;
 import org.springframework.samples.petclinic.model.Employee;
 import org.springframework.samples.petclinic.model.EmployeeShift;
 
@@ -31,6 +33,7 @@ public interface CompanyService {
 
 	Customer findCustomerByEmail(String lastName) throws DataAccessException;
     Customer findCustomerById(int id) throws DataAccessException;
+    Collection<Customer> findCustomerByLastName(String lastName);
     void saveCustomer(Customer customer) throws DataAccessException;
     
     Collection<Employee> findAllEmployee() throws DataAccessException;
@@ -53,7 +56,18 @@ public interface CompanyService {
 	 Collection<Contact> findContactByType(String type) throws DataAccessException;
 	 Collection<Contact> findContactByName(String name) throws DataAccessException;
 	 void saveContact(Contact contact);
-	Collection<Customer> findCustomerByLastName(String lastName);
+	 
+	 Collection<Food> findAllFood() throws DataAccessException;
+	 Collection<Food> findFoodByType(String type) throws DataAccessException;
+	 Collection<Food> findFoodByName(String name) throws DataAccessException;
+	 void saveFood(Food food);
+	
+	 
+	 Collection<Inventory> findAllInventory() throws DataAccessException;
+	 Collection<Inventory> findInventoryByType(String type) throws DataAccessException;
+	 Collection<Inventory> findInventoryByName(String name) throws DataAccessException;
+	 void saveInventory(Inventory food);
+	
 	
 	
 

@@ -24,11 +24,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.Customer;
 import org.springframework.samples.petclinic.model.Event;
+import org.springframework.samples.petclinic.model.Food;
+import org.springframework.samples.petclinic.model.Inventory;
 import org.springframework.samples.petclinic.model.Employee;
 import org.springframework.samples.petclinic.model.EmployeeShift;
 import org.springframework.samples.petclinic.repository.ContactRepository;
 import org.springframework.samples.petclinic.repository.CustomerRepository;
 import org.springframework.samples.petclinic.repository.EventRepository;
+import org.springframework.samples.petclinic.repository.FoodRepository;
+import org.springframework.samples.petclinic.repository.InventoryRepository;
 import org.springframework.samples.petclinic.repository.EmployeeRepository;
 import org.springframework.samples.petclinic.repository.EmployeeShiftRepository;
 import org.springframework.stereotype.Service;
@@ -42,13 +46,18 @@ public class CompanyServiceImpl implements CompanyService {
     private CustomerRepository customerRepository;
     private EmployeeShiftRepository employeeShiftRepository;
     private ContactRepository contactRepository;
+    private InventoryRepository inventoryRepository;
+    private FoodRepository foodRepository;
 
     @Autowired
-    public CompanyServiceImpl(EventRepository petRepository, EmployeeRepository vetRepository, CustomerRepository ownerRepository, EmployeeShiftRepository visitRepository) {
-        this.eventRepository = petRepository;
-        this.employeeRepository = vetRepository;
-        this.customerRepository = ownerRepository;
-        this.employeeShiftRepository = visitRepository;
+    public CompanyServiceImpl(EventRepository eventRepository, EmployeeRepository employeeRepository, CustomerRepository customerRepository, EmployeeShiftRepository employeeShiftRepository, 
+    			InventoryRepository inventoryRepository, FoodRepository foodRepository) {
+        this.eventRepository = eventRepository;
+        this.employeeRepository = employeeRepository;
+        this.customerRepository = customerRepository;
+        this.employeeShiftRepository = employeeShiftRepository;
+        this.inventoryRepository = inventoryRepository;
+        this.foodRepository = foodRepository;
     }
 
 	
@@ -66,6 +75,11 @@ public class CompanyServiceImpl implements CompanyService {
 		return customerRepository.findByLastName(lastName);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Customer findCustomerByEmail(String email) throws DataAccessException {
+		return customerRepository.findByEmail(email);
+	}
 
 	@Override
     @Transactional(readOnly = true)
@@ -73,6 +87,9 @@ public class CompanyServiceImpl implements CompanyService {
 		customerRepository.save(customer);
 		
 	}
+	
+	
+	
 
 	@Override
     @Transactional(readOnly = true)
@@ -91,13 +108,29 @@ public class CompanyServiceImpl implements CompanyService {
 	public Collection<Employee> findEmployeeByRole(String role) throws DataAccessException {
 		return employeeRepository.findByRole(role);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<EmployeeShift> findEmployeeShiftByEmployeeId(int employeeId) throws DataAccessException {
+		return employeeShiftRepository.findByEmployeeId(employeeId);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<Employee> findEmployeeByLastName(String lastName) throws DataAccessException {
+		return employeeRepository.findByLastName(lastName);
+	}
+
 
 	@Override
-    @Transactional(readOnly = true)
-	public void saveEmployeeShift(EmployeeShift employeeShift) throws DataAccessException {
-		employeeShiftRepository.save(employeeShift);
-		
+	public Employee findEmployeeByEmail(String email) throws DataAccessException {
+		return employeeRepository.findByEmail(email);
 	}
+
+	
+	
+
+	
 
 	@Override
     @Transactional(readOnly = true)
@@ -117,7 +150,14 @@ public class CompanyServiceImpl implements CompanyService {
 		eventRepository.save(event);
 		
 	}
+	
 
+	@Override
+    @Transactional(readOnly = true)
+	public void saveEmployeeShift(EmployeeShift employeeShift) throws DataAccessException {
+		employeeShiftRepository.save(employeeShift);
+		
+	}
 
 	@Override
 	public void saveEmployee(Employee employee) throws DataAccessException {
@@ -157,31 +197,65 @@ public class CompanyServiceImpl implements CompanyService {
 		
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public Customer findCustomerByEmail(String email) throws DataAccessException {
-		return customerRepository.findByEmail(email);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<EmployeeShift> findEmployeeShiftByEmployeeId(int employeeId) throws DataAccessException {
-		return employeeShiftRepository.findByEmployeeId(employeeId);
-	}
 	
 	@Override
-	@Transactional(readOnly = true)
-	public Collection<Employee> findEmployeeByLastName(String lastName) throws DataAccessException {
-		return employeeRepository.findByLastName(lastName);
+    @Transactional(readOnly = true)
+	public Collection<Food> findAllFood() throws DataAccessException {
+		return foodRepository.findAll();
 	}
 
 
 	@Override
-	public Employee findEmployeeByEmail(String email) throws DataAccessException {
-		return employeeRepository.findByEmail(email);
+    @Transactional(readOnly = true)
+	public Collection<Food> findFoodByType(String type) throws DataAccessException {
+		return foodRepository.findByType(type);
 	}
 
+	@Override
+    @Transactional(readOnly = true)
+	public Collection<Food> findFoodByName(String name) throws DataAccessException {
+		return foodRepository.findByName(name);
+	}
+
+	@Override
+    @Transactional(readOnly = true)
+	public void saveFood(Food food) {
+		foodRepository.save(food);
+		
+	}
+
+	
+	
+	@Override
+    @Transactional(readOnly = true)
+	public Collection<Inventory> findAllInventory() throws DataAccessException {
+		return inventoryRepository.findAll();
+	}
+
+
+	@Override
+    @Transactional(readOnly = true)
+	public Collection<Inventory> findInventoryByType(String type) throws DataAccessException {
+		return inventoryRepository.findByType(type);
+	}
+
+	@Override
+    @Transactional(readOnly = true)
+	public Collection<Inventory> findInventoryByName(String name) throws DataAccessException {
+		return inventoryRepository.findByName(name);
+	}
+
+	@Override
+    @Transactional(readOnly = true)
+	public void saveInventory(Inventory inventory) {
+		inventoryRepository.save(inventory);
+		
+	}
+
+	
+
+
+	
 
 
 
