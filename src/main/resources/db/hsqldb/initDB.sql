@@ -1,3 +1,15 @@
+DROP TABLE customers IF EXISTS;
+
+
+CREATE TABLE customers (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  first_name  VARCHAR(30),
+  last_name  VARCHAR(30)
+);
+
+
+
+
 DROP TABLE vet_specialties IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
