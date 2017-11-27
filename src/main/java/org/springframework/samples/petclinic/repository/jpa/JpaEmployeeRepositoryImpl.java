@@ -47,7 +47,7 @@ public class JpaEmployeeRepositoryImpl implements EmployeeRepository {
         query.setParameter("id", id);
         return (Employee) query.getSingleResult();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Employee> findByRole(String role) {
@@ -55,7 +55,7 @@ public class JpaEmployeeRepositoryImpl implements EmployeeRepository {
         query.setParameter("role", role);
         return query.getResultList();
     }
-    
+
     @Override
     public void save(Employee employee) {
         if (employee.getId() == null) {
@@ -76,7 +76,7 @@ public class JpaEmployeeRepositoryImpl implements EmployeeRepository {
 	@Override
     @SuppressWarnings("unchecked")
     public Collection<Employee> findByLastName(String name) {
-        Query query = this.em.createQuery("SELECT employee FROM Employee e left join fetch employee.employeeShifts WHERE employee.name =:name");
+        Query query = this.em.createQuery("FROM Employee e left join fetch e.employeeShifts WHERE e.lastName = :name");
         query.setParameter("name", name);
         return query.getResultList();
     }

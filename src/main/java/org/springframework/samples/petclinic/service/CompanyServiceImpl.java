@@ -50,25 +50,24 @@ public class CompanyServiceImpl implements CompanyService {
     private FoodRepository foodRepository;
 
     @Autowired
-    public CompanyServiceImpl(EventRepository eventRepository, EmployeeRepository employeeRepository, CustomerRepository customerRepository, EmployeeShiftRepository employeeShiftRepository, 
-    			InventoryRepository inventoryRepository, FoodRepository foodRepository) {
+    public CompanyServiceImpl(EventRepository eventRepository, EmployeeRepository employeeRepository, CustomerRepository customerRepository, EmployeeShiftRepository employeeShiftRepository,
+    			InventoryRepository inventoryRepository, FoodRepository foodRepository, ContactRepository contactRepository) {
         this.eventRepository = eventRepository;
         this.employeeRepository = employeeRepository;
         this.customerRepository = customerRepository;
         this.employeeShiftRepository = employeeShiftRepository;
         this.inventoryRepository = inventoryRepository;
         this.foodRepository = foodRepository;
+        this.contactRepository = contactRepository;
     }
 
-	
-	
-	
+
 	@Override
     @Transactional(readOnly = true)
 	public Customer findCustomerById(int id) throws DataAccessException {
 		 return customerRepository.findById(id);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Customer> findCustomerByLastName(String lastName) {
@@ -85,11 +84,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
 	public void saveCustomer(Customer customer) throws DataAccessException {
 		customerRepository.save(customer);
-		
+
 	}
-	
-	
-	
+
+
 
 	@Override
     @Transactional(readOnly = true)
@@ -108,13 +106,13 @@ public class CompanyServiceImpl implements CompanyService {
 	public Collection<Employee> findEmployeeByRole(String role) throws DataAccessException {
 		return employeeRepository.findByRole(role);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public List<EmployeeShift> findEmployeeShiftByEmployeeId(int employeeId) throws DataAccessException {
 		return employeeShiftRepository.findByEmployeeId(employeeId);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Employee> findEmployeeByLastName(String lastName) throws DataAccessException {
@@ -127,10 +125,10 @@ public class CompanyServiceImpl implements CompanyService {
 		return employeeRepository.findByEmail(email);
 	}
 
-	
-	
 
-	
+
+
+
 
 	@Override
     @Transactional(readOnly = true)
@@ -148,23 +146,23 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
 	public void saveEvent(Event event) throws DataAccessException {
 		eventRepository.save(event);
-		
+
 	}
-	
+
 
 	@Override
     @Transactional(readOnly = true)
 	public void saveEmployeeShift(EmployeeShift employeeShift) throws DataAccessException {
 		employeeShiftRepository.save(employeeShift);
-		
+
 	}
 
 	@Override
 	public void saveEmployee(Employee employee) throws DataAccessException {
 		employeeRepository.save(employee);
-		
+
 	}
-	
+
 
 	@Override
     @Transactional(readOnly = true)
@@ -194,10 +192,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
 	public void saveContact(Contact contact) {
 		contactRepository.save(contact);
-		
+
 	}
 
-	
+
 	@Override
     @Transactional(readOnly = true)
 	public Collection<Food> findAllFood() throws DataAccessException {
@@ -221,11 +219,11 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
 	public void saveFood(Food food) {
 		foodRepository.save(food);
-		
+
 	}
 
-	
-	
+
+
 	@Override
     @Transactional(readOnly = true)
 	public Collection<Inventory> findAllInventory() throws DataAccessException {
@@ -249,14 +247,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Transactional(readOnly = true)
 	public void saveInventory(Inventory inventory) {
 		inventoryRepository.save(inventory);
-		
+
 	}
-
-	
-
-
-	
-
-
 
 }

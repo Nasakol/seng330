@@ -40,20 +40,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContactController {
 
     private final CompanyService companyService;
-    private static final String VIEWS_CONTACT_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateContactForm";
+    private static final String VIEWS_CONTACT_CREATE_OR_UPDATE_FORM = "contacts/createOrUpdateContactForm";
 
 
     @Autowired
     public ContactController(CompanyService companyService) {
         this.companyService = companyService;
     }
-    
+
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
-    
+
     @RequestMapping(value = { "/contacts"})
     public String showContactList(Map<String, Object> model) {
         Collection<Contact> contacts = this.companyService.findAllContact();
@@ -107,8 +107,8 @@ public class ContactController {
             model.put("selections", results);
             return "contacts/contactsList";
         }
-    } 
-    
+    }
+
 
     @RequestMapping(value = "/contacts/{contactId}/edit", method = RequestMethod.GET)
     public String initUpdateContactForm(@PathVariable("contactId") int contactId, Model model) {
@@ -141,7 +141,7 @@ public class ContactController {
         return mav;
     }
 
-    
+
 
 
 }

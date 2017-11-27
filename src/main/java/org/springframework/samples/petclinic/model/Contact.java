@@ -4,14 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.management.relation.Role;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -20,17 +13,18 @@ import org.springframework.data.annotation.Transient;
 
 
 @Entity
+@Table(name = "contact")
 public class Contact extends NamedEntity{
-	
+
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
 	private String email;
-	
+
 	@Column(name = "phone")
 	@NotEmpty(message = "*Please provide an phone number")
 	private int phone;
-	
+
 	//vendor or tempAgency
 	@Column(name = "type")
 	@NotEmpty(message = "*Please provide an type")
@@ -48,7 +42,7 @@ public class Contact extends NamedEntity{
 		this.phone = phone;
 		this.type = type;
 	}
-	
+
 
 	public int getPhone() {
 		return phone;
@@ -65,7 +59,7 @@ public class Contact extends NamedEntity{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}

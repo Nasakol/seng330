@@ -44,21 +44,21 @@ public class Employee extends Person {
 	@Column(name = "role")
     @NotEmpty
     private String role;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
     private Set<EmployeeShift> schedules;
-	
-	
-	
-	
-	public String getPosition() {
+
+
+
+
+	public String getRole() {
 		return role;
 	}
 
-	public void setPosition(String position) {
-		this.role = position;
+	public void setRole(String role) {
+		this.role = role;
 	}
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.EAGER)
     private Set<EmployeeShift> employeeShifts;
 
