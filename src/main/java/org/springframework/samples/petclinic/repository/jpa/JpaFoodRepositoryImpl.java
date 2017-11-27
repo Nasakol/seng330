@@ -12,13 +12,15 @@ import org.springframework.samples.petclinic.model.Food;
 import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.EmployeeShift;
 import org.springframework.samples.petclinic.repository.FoodRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class JpaFoodRepositoryImpl implements FoodRepository{
-	 
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Food> findAll()  throws DataAccessException{
@@ -33,7 +35,7 @@ public class JpaFoodRepositoryImpl implements FoodRepository{
         query.setParameter("type", type);
         return query.getResultList();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Food>  findByName(String name)  throws DataAccessException{
@@ -41,7 +43,7 @@ public class JpaFoodRepositoryImpl implements FoodRepository{
         query.setParameter("name", name);
         return query.getResultList();
     }
-    
+
     @Override
     public void save(Food food)  throws DataAccessException{
         if (food.getId() == null) {

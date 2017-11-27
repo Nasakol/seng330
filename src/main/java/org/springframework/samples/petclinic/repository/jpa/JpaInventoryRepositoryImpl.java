@@ -13,13 +13,15 @@ import org.springframework.samples.petclinic.model.Inventory;
 import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.EmployeeShift;
 import org.springframework.samples.petclinic.repository.InventoryRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class JpaInventoryRepositoryImpl implements InventoryRepository{
-	 
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Inventory> findAll()  throws DataAccessException{
@@ -34,7 +36,7 @@ public class JpaInventoryRepositoryImpl implements InventoryRepository{
         query.setParameter("type", type);
         return query.getResultList();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Inventory>  findByName(String name)  throws DataAccessException{
@@ -42,7 +44,7 @@ public class JpaInventoryRepositoryImpl implements InventoryRepository{
         query.setParameter("name", name);
         return query.getResultList();
     }
-    
+
     @Override
     public void save(Inventory inventory)  throws DataAccessException{
         if (inventory.getId() == null) {
