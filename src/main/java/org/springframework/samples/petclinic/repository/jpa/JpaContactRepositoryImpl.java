@@ -11,13 +11,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Contact;
 import org.springframework.samples.petclinic.model.EmployeeShift;
 import org.springframework.samples.petclinic.repository.ContactRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class JpaContactRepositoryImpl implements ContactRepository{
-	 
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Contact> findAll()  throws DataAccessException{
@@ -32,7 +34,7 @@ public class JpaContactRepositoryImpl implements ContactRepository{
         query.setParameter("type", type);
         return query.getResultList();
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public Collection<Contact>  findByName(String name)  throws DataAccessException{
@@ -40,7 +42,7 @@ public class JpaContactRepositoryImpl implements ContactRepository{
         query.setParameter("name", name);
         return query.getResultList();
     }
-    
+
     @Override
     public void save(Contact contact)  throws DataAccessException{
         if (contact.getId() == null) {
@@ -55,6 +57,6 @@ public class JpaContactRepositoryImpl implements ContactRepository{
 		return this.em.find(Contact.class, contactId);
 	}
 
-    
+
 
 }

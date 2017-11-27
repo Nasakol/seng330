@@ -81,7 +81,7 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-    @Transactional(readOnly = true)
+    @Transactional
 	public void saveCustomer(Customer customer) throws DataAccessException {
 		customerRepository.save(customer);
 
@@ -189,8 +189,8 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-    @Transactional(readOnly = true)
-	public void saveContact(Contact contact) {
+    @Transactional
+	public void saveContact(Contact contact) throws DataAccessException {
 		contactRepository.save(contact);
 
 	}
