@@ -60,7 +60,7 @@ public class EmployeeShiftController {
      * @param employeeId
      * @return Employee
      */
-    @ModelAttribute("employee")
+    @ModelAttribute("employeeShift")
     public EmployeeShift loadEmployeeWithEmployeeShift(@PathVariable("employeeId") int employeeId) {
         Employee employee = this.companyService.findEmployeeById(employeeId);
         EmployeeShift shift = new EmployeeShift();
@@ -78,10 +78,10 @@ public class EmployeeShiftController {
     @RequestMapping(value = "/employees/{employeeId}/employeeShifts/new", method = RequestMethod.POST)
     public String processNewEmployeeShiftForm(@Valid EmployeeShift shift, BindingResult result) {
         if (result.hasErrors()) {
-            return "employees/createOrUpdateEmployeeShiftForm";
+            return "employees/{employeeId}/employeeShifts/createOrUpdateEmployeeShiftForm";
         } else {
             this.companyService.saveEmployeeShift(shift);
-            return "redirect:/employees/{employeeId}";
+            return "redirect:/employees/{employeeId/employeeShifts}";
         }
     }
 

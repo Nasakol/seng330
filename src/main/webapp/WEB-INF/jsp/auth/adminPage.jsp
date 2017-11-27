@@ -9,4 +9,4 @@
     <h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
  
     <b>This is protected page!</b>  
-</petclinic:layout>petclinic:layout>
+</petclinic:layout>

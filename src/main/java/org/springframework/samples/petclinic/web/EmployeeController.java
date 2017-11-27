@@ -124,7 +124,7 @@ public class EmployeeController {
      */
     @RequestMapping("/employees/{employeeId}")
     public ModelAndView showEmployee(@PathVariable("employeeId") int employeeId) {
-        ModelAndView mav = new ModelAndView("employees/employeeDetails");
+        ModelAndView mav = new ModelAndView("employees/{employeeId/employeeDetails");
         mav.addObject(this.companyService.findEmployeeById(employeeId));
         return mav;
     }

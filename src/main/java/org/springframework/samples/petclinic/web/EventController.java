@@ -25,16 +25,17 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/{customerId}")
+@RequestMapping("customer/{customerId}")
 public class EventController {
 
-    private static final String VIEWS_EVENTS_CREATE_OR_UPDATE_FORM = "events/createOrUpdateEventForm";
+    private static final String VIEWS_EVENTS_CREATE_OR_UPDATE_FORM = "/events/createOrUpdateEventForm";
     private final CompanyService companyService;
 
     @Autowired
@@ -50,6 +51,13 @@ public class EventController {
     @InitBinder("customer")
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+    }
+    
+    @RequestMapping("/events")
+    public ModelAndView showEventList(@PathVariable("eventId") int eventId) {
+        ModelAndView mav = new ModelAndView("events/{eventId/eventDetails");
+        mav.addObject(this.companyService.findEventById(eventId));
+        return mav;
     }
 
     @RequestMapping(value = "/events/new", method = RequestMethod.GET)
@@ -71,7 +79,7 @@ public class EventController {
         } else {
             customer.addEvent(event);
             this.companyService.saveEvent(event);
-            return "redirect:/{customerId}/events/{eventId}";
+            return "redirect:/customer/{customerId}/events";
         }
     }
 
@@ -90,7 +98,7 @@ public class EventController {
         } else {
             customer.addEvent(event);
             this.companyService.saveEvent(event);
-            return "redirect:/customers/{customerId}";
+            return "redirect:/customer/{customerId}/events";
         }
     }
 
