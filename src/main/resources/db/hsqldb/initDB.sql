@@ -1,3 +1,17 @@
+DROP TABLE contact IF EXISTS;
+
+
+CREATE TABLE contact (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  name  VARCHAR(30),
+  email  VARCHAR(30),
+  phone  int,
+  type  VARCHAR(30)
+);
+
+
+
+
 DROP TABLE vet_specialties IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;

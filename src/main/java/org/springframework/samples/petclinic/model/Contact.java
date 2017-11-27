@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.management.relation.Role;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -22,7 +23,7 @@ public class Contact extends NamedEntity{
 	private String email;
 
 	@Column(name = "phone")
-	@NotEmpty(message = "*Please provide an phone number")
+	@NotNull(message = "*Please provide an phone number")
 	private int phone;
 
 	//vendor or tempAgency
