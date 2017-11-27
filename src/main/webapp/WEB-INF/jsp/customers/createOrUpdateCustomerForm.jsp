@@ -1,4 +1,4 @@
-<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ page session="true" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="newCustomer">
     <h2>
-        <c:if test="${customer['new']}">New </c:if> Customer
+        <c:if test="${customer['new']}">New </c:if> Customer - <c:out value="${sessionScope.name}"/>
     </h2>
     <form:form modelAttribute="customer" class="form-horizontal" id="add-customer-form">
         <div class="form-group has-feedback">

@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.web;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,37 @@ public class CustomerController {
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
+
+
+    /**
+     * test session attribute
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/session/get", method = RequestMethod.GET)
+    public String getSessionAttribute(Map<String, Object> model, HttpSession session) {
+        String name = (String)session.getAttribute("name");
+
+        Customer customer = new Customer();
+        model.put("customer", customer);
+        return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+    }
+
+    /**
+     * test session attribute
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/session/set", method = RequestMethod.GET)
+    public String setSessionAttribute(Map<String, Object> model, HttpSession session) {
+        session.setAttribute("name", "ji");
+
+
+        Customer customer = new Customer();
+        model.put("customer", customer);
+        return VIEWS_CUSTOMER_CREATE_OR_UPDATE_FORM;
+    }
+
 
     @RequestMapping(value = "/customers/new", method = RequestMethod.GET)
     public String initCreationForm(Map<String, Object> model) {
