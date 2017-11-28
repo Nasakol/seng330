@@ -1,4 +1,5 @@
 DROP TABLE customers IF EXISTS;
+DROP TABLE events IF EXISTS;
 
 
 CREATE TABLE customers (
@@ -10,6 +11,17 @@ CREATE TABLE customers (
   city  VARCHAR(30),
   telephone VARCHAR(30),
   role VARCHAR(30)
+);
+
+CREATE TABLE events (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  name  VARCHAR(30),
+  date  VARCHAR(30),
+  location  VARCHAR(30),
+  type  VARCHAR(30),
+  isComplete BIT,
+  description VARCHAR(255),
+  customer_id INTEGER,
 );
 
 

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="owners">
+<petclinic:layout pageName="customers">
 
     <h2>Owner Information</h2>
 
@@ -13,23 +13,23 @@
     <table class="table table-striped">
         <tr>
             <th>Name</th>
-            <td><b><c:out value="${owner.firstName} ${owner.lastName}"/></b></td>
+            <td><b><c:out value="${customer.firstName} ${customer.lastName}"/></b></td>
         </tr>
         <tr>
             <th>Address</th>
-            <td><c:out value="${owner.address}"/></td>
+            <td><c:out value="${customer.address}"/></td>
         </tr>
         <tr>
             <th>City</th>
-            <td><c:out value="${owner.city}"/></td>
+            <td><c:out value="${customer.city}"/></td>
         </tr>
         <tr>
-            <th>City</th>
-            <td><Email value="${owner.email}"/></td>
+            <th>Email</th>
+            <td><Email value="${customer.email}"/>${customer.email}</td>
         </tr>
         <tr>
             <th>Telephone</th>
-            <td><c:out value="${owner.telephone}"/></td>
+            <td><c:out value="${customer.telephone}"/></td>
         </tr>
     </table>
 
